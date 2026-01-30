@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
+
 :root {
   --color-bg-light: #e7e7e7;
     --color-text-light: #0f0f0f;
@@ -8,7 +10,7 @@
     --color-bg-dark: #0f0f0f;
     --color-text-dark: #e7e7e7;
     --radius: 0.625rem;
-    --background: oklch(1 0 0);
+        --background: oklch(1 0 0);
     --foreground: oklch(0.129 0.042 264.695);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.129 0.042 264.695);
@@ -39,6 +41,7 @@
     --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
     --sidebar-border: oklch(0.929 0.013 255.508);
     --sidebar-ring: oklch(0.704 0.04 256.788);
+
 }
 
 /* Body default → PUTIH */

@@ -1,6 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+
+import { AnimateIcon } from "../animate-ui/icons/icon";
+import { SquareArrowOutUpRight } from "../icons/square-arrow-out-up-right";
+import { LinkPreview } from "./link-preview";
 
 export default function ProjectItem() {
   const projects = [
@@ -10,7 +13,7 @@ export default function ProjectItem() {
       description:
         "Full-stack online store with real-time inventory management",
       tech: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-      link: "#",
+      link: "https://www.sanity.io/templates",
       year: "2024",
     },
     {
@@ -18,24 +21,8 @@ export default function ProjectItem() {
       title: "Task Management App",
       description: "Collaborative project tool with drag-and-drop interface",
       tech: ["React", "Firebase", "Tailwind", "Framer Motion"],
-      link: "#",
+      link: "https://tailwindcss.com/",
       year: "2024",
-    },
-    {
-      number: "03",
-      title: "Portfolio CMS",
-      description: "Headless CMS for creative professionals",
-      tech: ["Next.js", "Sanity", "TypeScript", "Vercel"],
-      link: "#",
-      year: "2023",
-    },
-    {
-      number: "04",
-      title: "Weather Dashboard",
-      description: "Real-time weather data visualization",
-      tech: ["React", "API Integration", "Chart.js", "Tailwind"],
-      link: "#",
-      year: "2023",
     },
   ];
 
@@ -53,56 +40,57 @@ export default function ProjectItem() {
               transition={{ delay: index * 0.1 }}
               className="border-b border-stone-300 last:border-b-0"
             >
-              <motion.a
-                href={project.link}
-                whileHover="hover"
-                className="block py-12  group cursor-pointer"
-              >
-                <div className="grid md:grid-cols-[80px_1fr_auto] gap-8 items-start">
-                  {/* Number */}
-                  <div className="text-4xl font-bold text-stone-400 group-hover:text-stone-900 transition-colors">
-                    {project.number}
-                  </div>
+              <AnimateIcon animation="path" animateOnHover>
+                <LinkPreview
+                  url={project.link}
+                  className="block"
+                >
+                  <motion.div
+                    whileHover="hover"
+                    className="py-8 group cursor-pointer"
+                  >
+                    <div className="grid md:grid-cols-[80px_1fr_auto] gap-2 items-start">
+                      {/* Number */}
+                      <div className="text-[clamp(1rem,2vw,5rem)] text-left font-bold text-white/40">
+                        {project.number}
+                      </div>
 
-                  {/* Title & Tech */}
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4">
-                      <h3 className="text-3xl md:text-4xl font-bold text-stone-900 group-hover:translate-x-2 transition-transform">
-                        {project.title}
-                      </h3>
-                      <motion.div
-                        variants={{
-                          hover: { x: 5, y: -5 },
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ArrowUpRight className="w-6 h-6 text-stone-400 group-hover:text-stone-900 transition-colors" />
-                      </motion.div>
+                      {/* Title & Tech */}
+                      <div className="space-y-1">
+                        <div className="flex justify-start items-start gap-2 md:gap-4">
+                          <h3 className="text-[clamp(2rem,2vw,5rem)] font-bold">
+                            {project.title}
+                          </h3>
+                          <div>
+                            <SquareArrowOutUpRight className="md:opacity-0 md:group-hover:opacity-100 transition-opacity w-5 h-5"/>
+                          </div>
+                        </div>
+
+                        <p className="text-[clamp(1rem,1vw,5rem)] text-stone-600 font-light text-left">
+                          {project.description}
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div className="flex flex-wrap gap-4 pt-2">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="text-sm text-stone-500 font-medium"
+                            >
+                              {tech} 
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Year */}
+                      <div className="hidden md:block text-lg text-stone-400 font-medium">
+                        {project.year}
+                      </div>
                     </div>
-
-                    <p className="text-lg text-stone-600 max-w-2xl">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      {project.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-sm text-stone-500 font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Year */}
-                  <div className="hidden md:block text-lg text-stone-400 font-medium">
-                    {project.year}
-                  </div>
-                </div>
-              </motion.a>
+                  </motion.div>
+                </LinkPreview>
+              </AnimateIcon>
             </motion.div>
           ))}
         </div>
