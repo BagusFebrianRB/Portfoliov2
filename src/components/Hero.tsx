@@ -1,4 +1,4 @@
-// components/Hero.tsx
+
 "use client";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ChevronDown } from "lucide-react";

@@ -13,8 +13,8 @@ export default function Portfolio() {
         <Expertise/>
         <Project />
         <Experience />
-        <About />
-        <Contact />
+        <div className="relative z-20"><About /></div>
+        <div className="relative z-10"><Contact /></div>
       </section>
     </div>
   );
