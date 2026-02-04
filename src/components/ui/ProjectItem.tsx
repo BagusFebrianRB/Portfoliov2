@@ -36,15 +36,15 @@ export default function ProjectItem() {
               key={project.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{
+                delay: index * 0.1,
+                duration: 0.6,
+              }}
               className="border-b border-stone-300 last:border-b-0"
             >
               <AnimateIcon animation="path" animateOnHover>
-                <LinkPreview
-                  url={project.link}
-                  className="block"
-                >
+                <LinkPreview url={project.link} className="block">
                   <motion.div
                     whileHover="hover"
                     className="py-8 group cursor-pointer"
@@ -62,7 +62,7 @@ export default function ProjectItem() {
                             {project.title}
                           </h3>
                           <div>
-                            <SquareArrowOutUpRight className="md:opacity-0 md:group-hover:opacity-100 transition-opacity w-5 h-5"/>
+                            <SquareArrowOutUpRight className="md:opacity-0 md:group-hover:opacity-100 transition-opacity w-5 h-5" />
                           </div>
                         </div>
 
@@ -77,7 +77,7 @@ export default function ProjectItem() {
                               key={tech}
                               className="text-sm text-stone-500 font-medium"
                             >
-                              {tech} 
+                              {tech}
                             </span>
                           ))}
                         </div>

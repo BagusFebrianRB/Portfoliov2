@@ -1,18 +1,162 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { Plus } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 
+interface Skill {
+  number: string;
+  title: string;
+  description: string;
+  tech: string[];
+  items: string[];
+}
+
+// Separate component untuk tiap skill item
+function SkillCard({
+  skill,
+  index,
+  containerRef,
+}: {
+  skill: Skill;
+  index: number;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const { scrollYProgress: skillProgress } = useScroll({
+    target: containerRef,
+    offset: [`${index * 33}% end`, `${(index + 1) * 33}% start`],
+  });
+
+  // Parallax transformations dengan spring
+  const yRaw = useTransform(skillProgress, [0, 0.5, 1], [100, 0, -100]);
+  const y = useSpring(yRaw, { stiffness: 300, damping: 50 });
+
+  const opacityRaw = useTransform(
+    skillProgress,
+    [0, 0.2, 0.5, 0.8, 1],
+    [0, 1, 1, 1, 0],
+  );
+
+  const opacity = useSpring(opacityRaw, { stiffness: 300, damping: 50 });
+
+  const scaleRaw = useTransform(
+    skillProgress,
+    [0, 0.2, 0.5, 0.8, 1],
+    [0.9, 1, 1, 1, 0.7],
+  );
+  const scale = useSpring(scaleRaw, { stiffness: 100, damping: 50 });
+
+  // Parallax untuk number background
+  const numberY = useTransform(skillProgress, [0, 1], [150, -150]);
+  const numberOpacity = useTransform(skillProgress, [0, 0.3, 0.7, 1], [0, 0.8, 0.8, 0]);
+
+  return (
+    <motion.div style={{ y, opacity, scale }} className="sticky top-20 mb-12">
+      <div className="relative max-w-6xl mx-auto px-6">
+        <motion.div
+          style={{ y: numberY, opacity: numberOpacity }}
+          className="absolute top-0 right-0 md:right-10 text-[8rem] md:text-[12rem] font-bold bg-linear-to-b from-white/10 to-white/5 bg-clip-text text-transparent select-none pointer-events-none z-20"
+        >
+          {skill.number}
+        </motion.div>
+
+        {/* Card - More Professional */}
+        <div className="relative mt-8  border border-white/5 overflow-hidden z-10">
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-[#161616] pointer-events-none" />
+          
+          {/* Content */}
+          <div className="relative py-12 px-10 md:px-16">
+            {/* Number Badge */}
+            
+
+            {/* Title */}
+            <h3 className="text-3xl md:text-5xl font-bold mb-6 bg-linear-to-r from-white to-white/70 bg-clip-text text-transparent">
+              {skill.title}
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm md:text-lg text-gray-400 leading-relaxed mb-10 max-w-3xl">
+              {skill.description}
+            </p>
+
+            {/* Divider */}
+            <div className="h-px bg-linear-to-r from-white/20 via-white/10 to-transparent mb-10" />
+
+            {/* Two Column Layout */}
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+              {/* Tech Stack */}
+              <div>
+                <h4 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-5 font-semibold">
+                  Tech Stack
+                </h4>
+                <div className="flex flex-wrap gap-2.5">
+                  {skill.tech.map((tech, i) => (
+                    <motion.span
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="px-4 py-2.5 bg-linear-to-br from-white to-white/70 text-black text-xs md:text-sm font-medium cursor-default"
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Key Areas */}
+              <div>
+                <h4 className="text-xs uppercase tracking-[0.2em] text-white/50 mb-5 font-semibold">
+                  Expertise Areas
+                </h4>
+                <div className="space-y-3">
+                  {skill.items.map((item, i) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex items-center gap-3 group"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-linear-to-r from-white to-white/50 group-hover:scale-150 transition-transform" />
+                      <span className="text-sm md:text-base text-gray-300 group-hover:text-white transition-colors">
+                        {item}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Accent Line */}
+          <div className="h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Main component
 export default function ExpertiseItem() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const skills = [
+  const skills: Skill[] = [
     {
       number: "01",
       title: "Full-Stack Development",
       description:
         "I design and build end-to-end web systems, connecting user-facing interfaces with robust backend logic and data layers. My focus is on reliability, data flow, and real-world application needs.",
-      tech: ["Node.js", "Express.js", "PostgreSQL", "MySQL", "Supabase", "REST APIs"],
+      tech: [
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
+        "MySQL",
+        "Supabase",
+        "REST APIs",
+      ],
       items: [
         "Database Design",
         "RESTful APIs",
@@ -51,95 +195,16 @@ export default function ExpertiseItem() {
     },
   ];
 
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
   return (
-    <section>
-      <div className="w-full mx-auto">
-        {/* Accordion List */}
-        <div className="space-y-4">
-          {skills.map((skill, index) => {
-            const isExpanded = expandedIndex === index;
-
-            return (
-              <motion.div
-                key={skill.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className=" overflow-hidden bg-white/5 backdrop-blur-sm"
-              >
-                {/* Header - Always Visible */}
-                <button
-                  onClick={() => toggleExpand(index)}
-                  className="w-full px-8 py-6 flex items-center justify-between hover:bg-white/5 transition-colors"
-                >
-                  <div className="flex items-center gap-6">
-                    <span className="text-[clamp(1rem,2vw,5rem)] font-bold text-white/40">
-                      {skill.number}
-                    </span>
-                    <h3 className="text-[clamp(1rem,2vw,5rem)] font-bold text-left">
-                      {skill.title}
-                    </h3>
-                  </div>
-
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 45 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="shrink-0"
-                  >
-                    <Plus className="w-[clamp(20px,4vw,28px)] h-[clamp(20px,4vw,28px)]" />
-                  </motion.div>
-                </button>
-
-                {/* Expandable Content */}
-                <AnimatePresence initial={false}>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-8 pb-8 pt-4 border-t border-white/10">
-                        {/* Description */}
-                        <p className="text-gray-400 text-sm md:text-xl leading-relaxed mb-8">
-                          {skill.description}
-                        </p>
-                        <div className="flex justify-center items-center">
-                          {/* Tech Stack */}
-                          <div >
-                            <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-4">
-                              Technologies
-                            </h4>
-                            <div className="flex flex-wrap justify-center gap-2">
-                              {skill.tech.map((tech, i) => (
-                                <motion.span
-                                  key={tech}
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  animate={{ opacity: 1, scale: 1 }}
-                                  transition={{ delay: i * 0.05 }}
-                                  className="px-3 py-1.5 bg-white/10 text-white text-sm "
-                                >
-                                  {tech}
-                                </motion.span>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <div ref={containerRef} className="relative">
+      {skills.map((skill, index) => (
+        <SkillCard
+          key={skill.number}
+          skill={skill}
+          index={index}
+          containerRef={containerRef}
+        />
+      ))}
+    </div>
   );
 }

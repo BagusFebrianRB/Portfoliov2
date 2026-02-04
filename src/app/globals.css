@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
-
 :root {
   --color-bg-light: #e7e7e7;
     --color-text-light: #0f0f0f;
@@ -43,6 +41,8 @@
     --sidebar-ring: oklch(0.704 0.04 256.788);
 
 }
+
+
 
 /* Body default → PUTIH */
 body {

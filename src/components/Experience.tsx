@@ -1,9 +1,13 @@
 "use client";
 import { motion } from "framer-motion";
+import { ExperienceSection } from "./ui/ExperienceItem";
 
 export default function Experience() {
   return (
-    <section id="experience" className="min-h-screen py-[clamp(4rem,12vh,10rem)] px-8 section-dark">
+    <section
+      id="experience"
+      className="min-h-screen py-[clamp(4rem,12vh,10rem)] px-8 section-dark"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -20,10 +24,7 @@ export default function Experience() {
           <p className="text-sm md:text-xl text-gray-600 max-w-2xl mb-16">
             Timeline of my professional growth and the roles I&apos;ve taken on.
           </p>
-
-          <div className="text-center">
-           
-          </div>
+          <ExperienceSection />
         </motion.div>
       </div>
     </section>

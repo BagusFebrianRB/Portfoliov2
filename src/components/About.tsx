@@ -1,9 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import AboutEditorial from "./ui/AboutMe";
 
 export default function About() {
   return (
-    <section id="about" className="section-dark min-h-screen py-32 px-6">
+    <section id="about" className="section-dark min-h-screen rounded-b-4xl py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -15,11 +16,9 @@ export default function About() {
             04 — Get To Know Me
           </p>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">About Me</h2>
+          <h2 className="text-4xl md:text-6xl font-bold mb-16">About Me</h2>
 
-          <div className="border border-white/10 p-12 text-center">
-            <p className="text-gray-500">Your about content here...</p>
-          </div>
+          <AboutEditorial/>
         </motion.div>
       </div>
     </section>

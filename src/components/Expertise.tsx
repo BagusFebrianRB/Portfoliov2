@@ -26,9 +26,7 @@ export default function Expertise() {
             experiences.
           </p>
 
-          <div className="text-center">
-            <ExpertiseItem />
-          </div>
+          <ExpertiseItem />
         </motion.div>
       </div>
     </section>

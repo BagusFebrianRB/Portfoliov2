@@ -43,7 +43,7 @@ export default function Hero() {
           className="text-[clamp(3rem,10vw,8rem)] leading-none text-center tracking-wide font-extrabold mb-6 text-color-text-light "
         >
           Turning Ideas Into Thoughtful <br />
-          <span className="relative inline-flex w-[0.9em] h-[0.7em]">
+          <span className="relative inline-flex w-[0.9em] h-[0.7em] ">
             <Image
               src={"/profile.png"}
               fill

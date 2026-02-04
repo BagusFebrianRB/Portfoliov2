@@ -7,8 +7,8 @@ import Expertise from "@/components/Expertise";
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen mx-auto overflow-hidden pb-20">
-      <section className="pb-8 ">
+    <div className="min-h-screen mx-auto">
+      <section>
         <Hero />
         <Expertise/>
         <Project />
