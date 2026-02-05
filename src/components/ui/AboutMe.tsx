@@ -73,7 +73,7 @@ export default function AboutEditorial() {
                   <Github/>
                 </a>
                 <a
-                  href="/cv.pdf"
+                  href="https://drive.google.com/file/d/1KKXHu70nUYEFxqDmD2PSI2c6ulcOs7am/view?usp=sharing"
                   target="_blank"
                   className="w-fit text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white transition-colors"
                 >

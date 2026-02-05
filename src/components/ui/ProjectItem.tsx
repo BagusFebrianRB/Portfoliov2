@@ -9,19 +9,19 @@ export default function ProjectItem() {
   const projects = [
     {
       number: "01",
-      title: "E-Commerce Platform",
+      title: "BillFlow",
       description:
-        "Full-stack online store with real-time inventory management",
-      tech: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
-      link: "https://www.sanity.io/templates",
-      year: "2024",
+        "An invoice management platform for creating and managing professional invoices in minutes.",
+      tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+      link: "https://billflowinv.vercel.app/",
+      year: "2026",
     },
     {
       number: "02",
-      title: "Task Management App",
-      description: "Collaborative project tool with drag-and-drop interface",
-      tech: ["React", "Firebase", "Tailwind", "Framer Motion"],
-      link: "https://tailwindcss.com/",
+      title: "Personal Portfolio Website",
+      description: "Digital portfolio featuring projects and professional experience",
+      tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
+      link: "http://localhost:3000/",
       year: "2024",
     },
   ];

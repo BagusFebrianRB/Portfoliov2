@@ -47,6 +47,7 @@ export const LinkPreview = ({
       "viewport.deviceScaleFactor": 1,
       "viewport.width": width * 3,
       "viewport.height": height * 3,
+      waitForTimeout: 2000, 
     });
     src = `https://api.microlink.io/?${params}`;
   } else {
@@ -140,6 +141,7 @@ export const LinkPreview = ({
                     height={height}
                     className="rounded-lg"
                     alt="preview image"
+                    unoptimized
                   />
                 </a>
               </motion.div>
