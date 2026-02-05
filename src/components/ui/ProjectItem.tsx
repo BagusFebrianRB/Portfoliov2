@@ -18,7 +18,7 @@ export default function ProjectItem() {
     },
     {
       number: "02",
-      title: "Personal Portfolio Website",
+      title: "Portfolio Website",
       description: "Digital portfolio featuring projects and professional experience",
       tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
       link: "https://bagusfebrian.vercel.app/",
