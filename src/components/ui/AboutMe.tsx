@@ -15,7 +15,7 @@ export default function AboutEditorial() {
             <div className="relative">
               <div className="aspect-4/5 overflow-hidden grayscale hover:grayscale-0 transition duration-700">
                 <Image
-                  src="/about.jpg"
+                  src="/aboutme.jpg"
                   alt="Portrait"
                   fill
                   unoptimized
