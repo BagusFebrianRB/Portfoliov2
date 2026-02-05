@@ -21,8 +21,8 @@ export default function ProjectItem() {
       title: "Personal Portfolio Website",
       description: "Digital portfolio featuring projects and professional experience",
       tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
-      link: "http://localhost:3000/",
-      year: "2024",
+      link: "https://bagusfebrian.vercel.app/",
+      year: "2026",
     },
   ];
 
