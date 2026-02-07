@@ -3,6 +3,7 @@ import { Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
+import { Analytics } from "@vercel/analytics/next"
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
