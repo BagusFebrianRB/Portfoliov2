@@ -37,7 +37,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const projects = document.getElementById("expertise");
+      const projects = document.getElementById("projects");
       if (!projects) return;
 
       const triggerY = projects.offsetTop;

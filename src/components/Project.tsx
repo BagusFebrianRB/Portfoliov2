@@ -6,7 +6,7 @@ export default function Project() {
   return (
     <section
       id="projects"
-      className="section-dark min-h-screen py-[clamp(4rem,12vh,10rem)] px-8"
+      className="section-dark min-h-screen py-[clamp(4rem,12vh,10rem)] px-8 rounded-t-4xl"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
