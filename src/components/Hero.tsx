@@ -1,7 +1,6 @@
-
 "use client";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Github, Instagram, FileUser } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -54,6 +53,29 @@ export default function Hero() {
           Web Experiences.
         </motion.h1>
       </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+        style={{ opacity: scrollProgress }}
+        className="fixed bottom-[clamp(1rem,5vh,2rem)] left-6 z-10 gap-2 cursor-pointer flex flex-col items-center"
+      >
+        <a href="https://drive.google.com/file/d/1HNqKe_ZYhxd9aWzVgbrtCE6-gaw1mncA/view?usp=sharing" target="_blank" className="p-3">
+          <FileUser className="w-5 h-5" />
+        </a>
+        <a href="https://github.com/BagusFebrianRB" target="_blank" className="p-3">
+          <Github className="w-5 h-5" />
+        </a>
+        <a
+          href="https://www.instagram.com/bagusfebrian_/"
+          target="_blank"
+          className="p-3"
+        >
+          <Instagram className="w-5 h-5" />
+        </a>
+      </motion.div>
+
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -61,7 +83,7 @@ export default function Hero() {
         transition={{ delay: 1.5, duration: 0.8 }}
         style={{ opacity: scrollProgress }}
         className="fixed bottom-[clamp(1rem,5vh,2rem)] z-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer "
-        onClick={() => scrollToSection("#expertise")}
+        onClick={() => scrollToSection("#projects")}
       >
         <span className="text-xs uppercase tracking-widest text-stone-800">
           Scroll
