@@ -33,7 +33,7 @@ export default function Hero() {
     >
       <motion.div
         style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-        className="relative z-10 text-center px-6 mx-auto "
+        className="relative z-10 text-center px-6 mx-auto flex flex-col items-center"
       >
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -52,28 +52,32 @@ export default function Hero() {
           </span>{" "}
           Web Experiences.
         </motion.h1>
-      </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.6 }}
-        style={{ opacity: scrollProgress }}
-        className="fixed bottom-[clamp(1rem,5vh,2rem)] left-6 z-10 gap-2 cursor-pointer flex flex-col items-center"
-      >
-        <a href="https://drive.google.com/file/d/1HNqKe_ZYhxd9aWzVgbrtCE6-gaw1mncA/view?usp=sharing" target="_blank" className="p-3">
-          <FileUser className="w-5 h-5" />
-        </a>
-        <a href="https://github.com/BagusFebrianRB" target="_blank" className="p-3">
-          <Github className="w-5 h-5" />
-        </a>
-        <a
-          href="https://www.instagram.com/bagusfebrian_/"
-          target="_blank"
-          className="p-3"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex z-10 cursor-pointer flex-row gap-8 items-center mt-2"
         >
-          <Instagram className="w-5 h-5" />
-        </a>
+          <a
+            href="https://drive.google.com/file/d/1HNqKe_ZYhxd9aWzVgbrtCE6-gaw1mncA/view?usp=sharing"
+            target="_blank"
+          >
+            <FileUser className="w-5 h-5" />
+          </a>
+          <a
+            href="https://github.com/BagusFebrianRB"
+            target="_blank"
+          >
+            <Github className="w-5 h-5" />
+          </a>
+          <a
+            href="https://www.instagram.com/bagusfebrian_/"
+            target="_blank"
+          >
+            <Instagram className="w-5 h-5" />
+          </a>
+        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator */}
