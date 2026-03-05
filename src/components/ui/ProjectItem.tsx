@@ -9,6 +9,15 @@ export default function ProjectItem() {
   const projects = [
     {
       number: "01",
+      title: "Siabsen",
+      description:
+        "A web-based system designed to record, monitor, and manage employee attendance efficiently.",
+      tech: ["Django", "React", "PostgreSQL", "Python"],
+      link: "https://siabsen-karyawan.vercel.app/",
+      year: "2026",
+    },
+    {
+      number: "02",
       title: "BillFlow",
       description:
         "An invoice management platform for creating and managing professional invoices in minutes.",
@@ -17,7 +26,7 @@ export default function ProjectItem() {
       year: "2026",
     },
     {
-      number: "02",
+      number: "03",
       title: "Portfolio Website",
       description: "Digital portfolio featuring projects and professional experience",
       tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS"],
